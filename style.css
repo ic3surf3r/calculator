@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Press Start 2P", sans-serif;
 }
 
 .container {
@@ -23,6 +26,11 @@
   margin-bottom: 10px;
   width: 100%;
   border-radius: 10px;
+  display: flex;
+}
+
+#plusOrMinus {
+  margin-right: 3px;
 }
 
 #display {
