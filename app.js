@@ -1,24 +1,26 @@
 const buttons = document.querySelector(".buttons");
 const display = document.getElementById("display");
 const pluseminus = document.getElementById("plusOrMinus");
+let value1;
 buttons.addEventListener("click", doSomething);
+
+console.log(value1);
 
 function doSomething(e) {
   const classList = e.target.classList;
   const value = e.target.value;
   switch (true) {
     case classList.contains("number"):
-      if (display.innerText === "0") {
-        display.innerText = e.target.value;
-      } else if (display.innerText.length === 8) {
-        return;
+      if (value1 === undefined || value1 === "") {
+        numberToDisplay(e.target.value);
       } else {
-        display.innerText += e.target.value;
-        console.log(display.innerText.length);
+        display.innerText = "0";
+        numberToDisplay(e.target.value);
       }
       break;
     case classList.contains("clear"):
       display.innerText = "0";
+      pluseminus.innerText = "";
       break;
     case classList.contains("plusminus"):
       if (pluseminus.innerText === "") {
@@ -62,5 +64,15 @@ function checkIfNegative(result) {
   } else {
     pluseminus.innerText = "";
     display.innerText = result;
+  }
+}
+
+function numberToDisplay(num) {
+  if (display.innerText === "0") {
+    display.innerText = num;
+  } else if (display.innerText.length === 8) {
+    return;
+  } else {
+    display.innerText += num;
   }
 }
