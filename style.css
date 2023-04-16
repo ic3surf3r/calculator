@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
+:root {
+  --shadow-color: 51deg 31% 33%;
+  --shadow-elevation-low: 0.5px 0.8px 1px hsl(var(--shadow-color) / 0.47),
+    0.8px 1.5px 1.9px -1.3px hsl(var(--shadow-color) / 0.45),
+    2.2px 3.8px 4.8px -2.7px hsl(var(--shadow-color) / 0.43);
+  --shadow-elevation-medium: 0.5px 0.8px 1px hsl(var(--shadow-color) / 0.49),
+    1.7px 3px 3.8px -0.9px hsl(var(--shadow-color) / 0.48),
+    4.4px 7.7px 9.8px -1.8px hsl(var(--shadow-color) / 0.47),
+    10.9px 19.2px 24.3px -2.7px hsl(var(--shadow-color) / 0.45);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,26 +18,34 @@
   font-family: "Press Start 2P", sans-serif;
 }
 
+body {
+  background-color: black;
+}
+
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
+  padding: 30px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  height: 700px;
-  width: 230px;
+  height: 420px;
+  width: 300px;
   justify-content: center;
+  background-color: #c8bc7f;
+  border-radius: 40px;
 }
 
 .display {
   justify-content: flex-end;
   padding: 10px 3px;
   background: #3a7a4b;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   width: 100%;
   border-radius: 10px;
   display: flex;
+  border: 3px inset #2c5c39;
 }
 
 #plusOrMinus {
@@ -48,6 +67,14 @@
   height: 50px;
   width: 50px;
   border-radius: 25px;
+  background-color: #fff;
+  border: 2px solid #d0c7b8;
+  box-shadow: var(--shadow-elevation-medium);
+  cursor: pointer;
+}
+
+.btn:active {
+  box-shadow: var(--shadow-elevation-low);
 }
 
 .buttons .zero {
