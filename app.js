@@ -4,6 +4,7 @@ const pluseminus = document.getElementById("plusOrMinus");
 let value1 = "";
 let value2 = "";
 let operator = "";
+const percentage = "percentage";
 let awaitOperation = false;
 buttons.addEventListener("click", doSomething);
 
@@ -107,15 +108,29 @@ function doSomething(e) {
         awaitOperation = true;
       }
       break;
+    case classList.contains("percentage"):
+      if (value1 === "") {
+        value1 = checkIfNegativeValue(display.innerText);
+        performOperation(value1, value2, percentage);
+        awaitOperation = false;
+        value1 = "";
+        value2 = "";
+        operator = "";
+      } else {
+        value2 = checkIfNegativeValue(display.innerText);
+        performOperation(value1, value2, percentage);
+        value1 = checkIfNegativeValue(display.innerText);
+        value2 = "";
+      }
+      break;
   }
 }
 
-function performOperation(value1, value2, operation) {
+function performOperation(value1, value2, operation, option) {
   let result;
   switch (operation) {
     case "add":
       result = value1 + value2;
-      console.log(value1, value2, operation);
       checkIfNegative(result);
       break;
     case "subtract":
@@ -130,6 +145,15 @@ function performOperation(value1, value2, operation) {
       result = value1 / value2;
       checkIfNegative(result);
       break;
+    case "percentage":
+      if (value2 === 0) {
+        result = value1 / 100;
+        checkIfNegative(result);
+      } else {
+        result = (value1 / 100) * value2;
+        checkIfNegative(result);
+      }
+      break;
     default:
       break;
   }
@@ -139,10 +163,10 @@ function checkIfNegative(result) {
   if (result < 0) {
     pluseminus.innerText = "-";
     result = result * -1;
-    display.innerText = `${result}`;
+    display.innerText = `${Number(result.toFixed(4))}`;
   } else {
     pluseminus.innerText = "";
-    display.innerText = `${result}`;
+    display.innerText = `${Number(result.toFixed(4))}`;
   }
 }
 
