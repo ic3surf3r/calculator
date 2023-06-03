@@ -15,16 +15,19 @@ function doSomething(e) {
     case classList.contains("number"):
       if (awaitOperation) {
         awaitOperation = false;
+        pluseminus.innerText = "";
         display.innerText = "0";
         numberToDisplay(value);
       } else {
         numberToDisplay(value);
       }
       break;
+
     case classList.contains("clear"):
       display.innerText = "0";
       pluseminus.innerText = "";
       break;
+
     case classList.contains("plusminus"):
       if (awaitOperation) {
         display.innerText = "0";
@@ -36,6 +39,10 @@ function doSomething(e) {
       }
       break;
 
+    case classList.contains("period"):
+      display.innerText = display.innerText + ".";
+      break;
+
     case classList.contains("equals"):
       value2 = checkIfNegativeValue(display.innerText);
       performOperation(value1, value2, operator);
@@ -44,6 +51,7 @@ function doSomething(e) {
       operator = "";
       awaitOperation = false;
       break;
+
     case classList.contains("addition"):
       if (value1 === "") {
         value1 = checkIfNegativeValue(display.innerText);
@@ -60,6 +68,7 @@ function doSomething(e) {
         awaitOperation = true;
       }
       break;
+
     case classList.contains("subtraction"):
       if (value1 === "") {
         value1 = checkIfNegativeValue(display.innerText);
@@ -76,6 +85,7 @@ function doSomething(e) {
         awaitOperation = true;
       }
       break;
+
     case classList.contains("multiplication"):
       if (value1 === "") {
         value1 = checkIfNegativeValue(display.innerText);
@@ -92,6 +102,7 @@ function doSomething(e) {
         awaitOperation = true;
       }
       break;
+
     case classList.contains("division"):
       if (value1 === "") {
         value1 = checkIfNegativeValue(display.innerText);
@@ -108,6 +119,7 @@ function doSomething(e) {
         awaitOperation = true;
       }
       break;
+
     case classList.contains("percentage"):
       if (value1 === "") {
         value1 = checkIfNegativeValue(display.innerText);
